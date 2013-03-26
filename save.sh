@@ -47,22 +47,22 @@ do
 
     url="http://localhost:3000/banks?bankname=${bankname}&year=${year}&month=${month}"
 
-    wget -O ${tmp} ${url}
+    wget -q -O ${tmp} ${url}
     # convert to shift-jis
     nkf -s ${tmp} > "${outdir}/${bankname}/${filename}"
 
     url="http://localhost:3000/banks?bankname=${bankname}"
-    wget -O ${tmp} ${url}
+    wget -q -O ${tmp} ${url}
     # convert to shift-jis
     nkf -s ${tmp} > "${outdir}/total/${bankname}.html"
 done
 
 url="http://localhost:3000/banks"
-wget -O ${tmp} ${url}
+wget -q -O ${tmp} ${url}
 nkf -s ${tmp} > "${outdir}/total/all.html"
 
 url="http://localhost:3000/banks/0/newest.html"
-wget -O ${tmp} ${url}
+wget -q -O ${tmp} ${url}
 nkf -s ${tmp} > "${outdir}/newest.html"
 
 rm ${tmp}
